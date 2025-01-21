@@ -32,15 +32,15 @@ const config = {
   },
 };
 
-// app.use(
-//   cors({
-//     origin: process.env.CLIENT_URL,
-//     credentials: true,
-//     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-//     allowedHeaders: ["Content-Type", "Authorization"],
-//     exposedHeaders: ["set-cookie"],
-//   })
-// );
+app.use(
+  cors({
+    origin: "*",  // Allows all origins
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    exposedHeaders: ["set-cookie"],
+  })
+);
 
 app.get("/callback", (req, res) => {
   res.send(`Logged in successfully ${req.oidc.user}`);
