@@ -9,27 +9,27 @@ import {
   getJobById,
   deleteJob,
 } from "../controllers/jobController.js";
-import protect from "../middleware/protect.js";
+// import protect from "../middleware/protect.js";
 
 const router = express.Router();
 
-router.post("/jobs", protect, createJob);
+router.post("/jobs",  createJob);
 router.get("/jobs", getJobs);
-router.get("/jobs/user/:id", protect, getJobsByUser);
+router.get("/jobs/user/:id",  getJobsByUser);
 
 // search jobs
 router.get("/jobs/search", searchJobs);
 
 // apply for job
-router.put("/jobs/apply/:id", protect, applyJob);
+router.put("/jobs/apply/:id",  applyJob);
 
 // like job and unlike job
-router.put("/jobs/like/:id", protect, likeJob);
+router.put("/jobs/like/:id",  likeJob);
 
 // getJobById
-router.get("/jobs/:id", protect, getJobById);
+router.get("/jobs/:id",  getJobById);
 
 // delete job
-router.delete("/jobs/:id", protect, deleteJob);
+router.delete("/jobs/:id",  deleteJob);
 
 export default router;

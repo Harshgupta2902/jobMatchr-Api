@@ -43,9 +43,7 @@ app.use(
 );
 
 app.get("/callback", (req, res) => {
-  // console.log(req.oidc.user);
-  res.send("Logged in successfully");
-  return res.redirect(process.env.CLIENT_URL);
+  res.send(`Logged in successfully ${req.oidc.user}`);
 });
 
 
@@ -62,7 +60,6 @@ const enusureUserInDB = asyncHandler(async (user) => {
     const existingUser = await User.findOne({ auth0Id: user.sub });
 
     if (!existingUser) {
-      // create a new user document
       const newUser = new User({
         auth0Id: user.sub,
         email: user.email,

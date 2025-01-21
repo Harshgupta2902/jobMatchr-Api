@@ -1,15 +1,16 @@
 import asyncHandler from "express-async-handler";
 import User from "../models/UserModel.js";
 import Job from "../models/JobModel.js";
+import mongoose from 'mongoose';
 
 export const createJob = asyncHandler(async (req, res) => {
   try {
-    const user = await User.findOne({ auth0Id: req.oidc.user.sub });
-    const isAuth = req.oidc.isAuthenticated() || user.email;
+    // const user = await User.findOne(z{ auth0Id: req.oidc.user.sub });
+    // const isAuth = req.oidc.isAuthenticated() || user.email;
 
-    if (!isAuth) {
-      return res.status(401).json({ message: "Not Authorized" });
-    }
+    // if (!isAuth) {
+    //   return res.status(401).json({ message: "Not Authorized" });
+    // }
 
     const {
       title,
@@ -61,7 +62,7 @@ export const createJob = asyncHandler(async (req, res) => {
       skills,
       salaryType,
       negotiable,
-      createdBy: user._id,
+      createdBy: new mongoose.Types.ObjectId("64bfc78a8f1d3a6b9c1e8eaf")  // Use `new`
     });
 
     await job.save();
