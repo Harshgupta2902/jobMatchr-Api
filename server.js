@@ -42,6 +42,14 @@ app.use(
   })
 );
 
+app.get("/callback", (req, res) => {
+  // console.log(req.oidc.user);
+  res.send("Logged in successfully");
+  return res.redirect(process.env.CLIENT_URL);
+});
+
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -79,7 +87,6 @@ app.get("/", async (req, res) => {
   if (req.oidc.isAuthenticated()) {
     // check if Auth0 user exists in the db
     await enusureUserInDB(req.oidc.user);
-
     // redirect to the frontend
     return res.redirect(process.env.CLIENT_URL);
   } else {
