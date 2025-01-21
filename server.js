@@ -2,7 +2,6 @@ import express from "express";
 import { auth } from "express-openid-connect";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
-import cors from "cors";
 import connect from "./db/connect.js";
 import asyncHandler from "express-async-handler";
 import fs from "fs";
@@ -31,17 +30,6 @@ const config = {
     },
   },
 };
-
-app.use(
-  cors({
-    origin: "*",  // Allows all origins
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    exposedHeaders: ["set-cookie"],
-  })
-);
-
 app.get("/callback", (req, res) => {
   res.send(`Logged in successfully ${req.oidc.user}`);
 });
