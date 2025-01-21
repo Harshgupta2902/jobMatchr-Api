@@ -8,7 +8,6 @@ import asyncHandler from "express-async-handler";
 import fs from "fs";
 import User from "./models/UserModel.js";
 dotenv.config();
-
 const app = express();
 
 const config = {
