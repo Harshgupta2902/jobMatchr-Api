@@ -1,11 +1,8 @@
 import express from "express";
-import { auth } from "express-openid-connect";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import connect from "./db/connect.js";
-import asyncHandler from "express-async-handler";
 import fs from "fs";
-import User from "./models/UserModel.js";
 import cors from "cors";
 
 dotenv.config();
